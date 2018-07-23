@@ -1,0 +1,336 @@
+[bar/top]
+monitor = 
+width = 100%
+height = 20
+
+background = #00000000
+foreground = #ccffffff
+
+line-color = #00000000
+line-size = 0
+
+spacing = 2
+padding-right = 1
+module-margin = 1.5
+
+#font-0 = NotoSans-Regular:size=10;-1
+font-0 = FreeMono:size=10;-1
+#MaterialIcons
+font-1 = FreeMono:size=10;0
+#Termsynu
+font-2 = 
+FreeMono:size=1o:antialias=false;-2
+#FontAwesome
+font-3 = FreeMono:size=24;0
+
+modules-left = i3
+modules-right = cpu memory wireless-network battery clock
+
+[module/i3]
+type = internal/i3
+format = <label-state><label-mode>
+font = 4
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+; This will split the workspace name on ':'
+; Default: false
+strip-wsnumbers = true
+
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+; Default: false
+index-sort = true
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = true
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = false
+
+; Wrap around when reaching the first/last workspace
+; Default: true
+wrapping-scroll = false
+
+; Set the scroll cycle direction 
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning 
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces 
+; containing 'code' in the label
+; Default: false
+fuzzy-match = true
+
+[module/backlight]
+type = internal/xbacklight
+format = <ramp> <bar>
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+
+bar-width = 10
+bar-indicator = |
+bar-indicator-font = 3
+bar-indicator-foreground = #ff
+bar-fill = ─
+bar-fill-font = 3
+bar-fill-foreground = #c9665e
+bar-empty = ─
+bar-empty-font = 3
+bar-empty-foreground = #44
+
+[module/battery]
+type = internal/battery
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = #f53c3c
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = #ffa900
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+bar-capacity-width = 10
+bar-capacity-format = %{+u}%{+o}%fill%%empty%%{-u}%{-o}
+bar-capacity-fill = █
+bar-capacity-fill-foreground = #ddffffff
+bar-capacity-fill-font = 3
+bar-capacity-empty = █
+bar-capacity-empty-font = 3
+bar-capacity-empty-foreground = #44ffffff
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format = <label> <ramp-coreload>
+label = CPU
+
+ramp-coreload-0 = ▁
+ramp-coreload-0-font = 2
+ramp-coreload-0-foreground = #F3E2A9
+ramp-coreload-1 =  ▂
+ramp-coreload-1-font = 2
+ramp-coreload-1-foreground = #F3E2A9
+ramp-coreload-2 = ▃
+ramp-coreload-2-font = 2
+ramp-coreload-2-foreground = #F3E2A9
+ramp-coreload-3 = ▄
+ramp-coreload-3-font = 2
+ramp-coreload-3-foreground = #F3E2A9
+ramp-coreload-4 = ▅
+ramp-coreload-4-font = 2
+ramp-coreload-4-foreground = #FFAAC58
+ramp-coreload-5 = ▆
+ramp-coreload-5-font = 2
+ramp-coreload-5-foreground = #FFAAC58
+ramp-coreload-6 = ▇
+ramp-coreload-6-font = 2
+ramp-coreload-6-foreground = #FF8000
+ramp-coreload-7 = █
+ramp-coreload-7-font = 2
+ramp-coreload-7-foreground = #FF8000
+
+[module/date]
+type = internal/date
+date =    %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
+
+[module/memory]
+type = internal/memory
+format = <label> <bar-used>
+label = RAM
+
+bar-used-width = 10
+
+bar-used-foreground-0 = #F3E2A9
+bar-used-foreground-1 = #F3E2A9
+bar-used-foreground-2 = #FE9A2E
+bar-used-foreground-3 = #FF8000
+bar-used-indicator = 
+bar-used-indicator-font = 6
+bar-used-indicator-foreground = #ff
+bar-used-fill = ─
+bar-used-fill-font = 6
+bar-used-empty = ─
+bar-used-empty-font = 6
+bar-used-empty-foreground = #1c2242
+#444444
+
+[module/mpd]
+type = internal/mpd
+host = localhost
+port = 6601
+interval = 1
+format-online = <icon-prev>  <toggle> <icon-next>  <bar-progress>  
+#<label-song>
+�
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-random = 
+icon-repeat = 
+
+toggle-on-foreground =
+toggle-off-foreground = #55
+
+bar-progress-width = 45
+bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
+bar-progress-indicator = |
+bar-progress-indicator-foreground = #ff
+bar-progress-indicator-font = 3
+bar-progress-fill = ─
+bar-progress-fill-foreground = #F16E00
+bar-progress-fill-font = 3
+bar-progress-empty = ─
+bar-progress-empty-font = 3
+bar-progress-empty-foreground = #44
+
+[module/mpd1]
+type = internal/mpd1
+format-online = <bar-progress>  <icon-prev> <icon-stop> <toggle> <icon-next>  <label-song>
+format-online-overline = ${root.background}
+format-online-underline = ${root.background}
+format-offline = <label-offline>
+label-offline = mpd is off
+host = localhost
+port = 6601
+interval = 1 
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-random = 
+icon-repeat = 
+
+toggle-on-foreground =
+toggle-off-foreground = #55
+
+bar-progress-width = 20
+bar-progress-format = %{+o +u}%fill%%{-o -u}%indicator%%{+o +u}%empty%%{-u -o}
+; bar-progress-indicator = |
+bar-progress-indicator = █
+bar-progress-indicator-foreground = #ff
+bar-progress-indicator-font = 3
+; bar-progress-fill = ─
+bar-progress-fill = █
+bar-progress-fill-foreground = #bb
+bar-progress-fill-font = 3
+; bar-progress-empty = ─
+bar-progress-empty = ▒
+bar-progress-empty-font = 3
+bar-progress-empty-foreground = #44
+
+[module/wireless-network]
+type = internal/network
+interface = wlp3s0
+interval = 3.0
+ping-interval = 10
+
+format-connected = <ramp-signal> <label-connected>
+label-connected = %essid%
+label-disconnected =    not connected
+label-disconnected-foreground = #66
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+
+animation-packetloss-0 = 
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 
+animation-packetloss-1-foreground = ${bar/top.foreground}
+animation-packetloss-framerate = 500
+
+[module/wired-network]
+type = internal/network
+interface = net0
+interval = 3.0
+
+label-connected =    %{T3}%local_ip%%{T-}
+label-disconnected-foreground = #66
+
+[module/volume]
+type = internal/volume
+speaker-mixer = Speaker
+headphone-mixer = Headphone
+headphone-id = 9
+
+format-volume = <ramp-volume> <label-volume>
+label-muted =   muted
+label-muted-foreground = #66
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+
+[module/powermenu]
+type = custom/menu
+
+format-padding = 5
+
+label-open = 
+label-close = 
+
+menu-0-0 = Terminate WM
+menu-0-0-foreground = #fba922
+menu-0-0-exec = bspc quit -1
+menu-0-1 = Reboot
+menu-0-1-foreground = #fba922
+menu-0-1-exec = menu_open-1
+menu-0-2 = Power off
+menu-0-2-foreground = #fba922
+menu-0-2-exec = menu_open-2
+
+menu-1-0 = Cancel
+menu-1-0-foreground = #fba922
+menu-1-0-exec = menu_open-0
+menu-1-1 = Reboot
+menu-1-1-foreground = #fba922
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = Power off
+menu-2-0-foreground = #fba922
+menu-2-0-exec = sudo poweroff
+menu-2-1 = Cancel
+menu-2-1-foreground = #fba922
+menu-2-1-exec = menu_open-0
+
+[module/clock]
+type = internal/date
+interval = 2
+date = %%{F#999}%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+
+; vim:ft=dosini
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security
+
